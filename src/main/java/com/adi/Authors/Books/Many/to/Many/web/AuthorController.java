@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/authors")
 public class AuthorController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AuthorController {
     }
 
     @PutMapping("/{id}")
-    public Author update(@PathVariable Long id, Author author){
+    public Author update(@PathVariable Long id,@RequestBody Author author){
         return authorService.update(id,author);
     }
 

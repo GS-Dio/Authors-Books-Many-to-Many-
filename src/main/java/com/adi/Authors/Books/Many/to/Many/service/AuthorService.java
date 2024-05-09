@@ -25,7 +25,7 @@ public class AuthorService {
         return authorRepository.save(author);
     }
 
-    public Author update(Long id,Author updateAuthor){
+    public Author update(Long id, Author updateAuthor){
         Optional<Author> optionalAuthor = authorRepository.findById(id);
 
         if (optionalAuthor.isPresent()){
@@ -33,11 +33,11 @@ public class AuthorService {
 
             newAuthor.setName(updateAuthor.getName());
 
-            return newAuthor;
-        }else
+            return authorRepository.save(newAuthor);
+        }else {
             log.warn("Author with " + id + " id not found!!");
-
-        return null;
+            throw new IllegalArgumentException("Author with id " + id + " not found");
+        }
     }
 
     public Author findById(Long id){
